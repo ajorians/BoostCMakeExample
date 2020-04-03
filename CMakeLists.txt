@@ -6,7 +6,11 @@ FILE(GLOB SOURCE_FILES "main.cpp")
 
 SOURCE_GROUP(Source FILES ${SOURCE_FILES})
 
+IF( MSVC )
 set(Boost_USE_STATIC_LIBS   ON)
+ELSE()
+set(Boost_USE_STATIC_LIBS   OFF)
+ENDIF()
 find_package(Boost COMPONENTS date_time REQUIRED)
 set(CMAKE_CXX_STANDARD 17)
 
