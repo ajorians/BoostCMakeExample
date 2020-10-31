@@ -1,6 +1,7 @@
 #include "boost/date_time/gregorian/gregorian.hpp"
-  #include <iostream>
-  #include <string>
+#include "boost/filesystem.hpp"
+#include <iostream>
+#include <string>
 
   int
   main() 
@@ -38,6 +39,17 @@
     catch(std::exception& e) {
       std::cout << "  Exception: " <<  e.what() << std::endl;
     }
+
+    using namespace boost::filesystem;
+
+     path p(".");
+
+     if(is_directory(p)) {
+        std::cout << p << " is a directory containing:\n";
+
+        for(auto& entry : boost::make_iterator_range(directory_iterator(p), {}))
+           std::cout << entry << "\n";
+     }
 
 
     return 0;
